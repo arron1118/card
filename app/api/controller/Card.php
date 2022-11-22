@@ -122,7 +122,7 @@ class Card extends ApiController
             }
 
             if ($model !== null) {
-                $this->model::where('id', $id)->inc($key)->update();
+//                $this->model::where('id', $id)->inc($key)->update();
                 $model->save([
                     'card_id' => $id,
                     'user_id' => $this->userInfo->id,
@@ -140,7 +140,6 @@ class Card extends ApiController
      */
     public function setViewHistory($id)
     {
-        $this->model::where('id', $id)->inc('read_count')->update();
         (new \app\admin\model\UserCardHistory())->save([
             'card_id' => $id,
             'user_id' => $this->userInfo->id,
