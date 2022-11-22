@@ -1,0 +1,38 @@
+<form id="app-form" class="layui-form layuimini-form">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">小程序公钥</label>
+        <div class="layui-input-block">
+            <input type="text" name="miniapp_appid" class="layui-input" lay-verify="required" placeholder="AppID" value="{:sysconfig('wechat','miniapp_appid')}">
+            <tip>填写AppID</tip>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">小程序私钥</label>
+        <div class="layui-input-block">
+            <input type="text" name="miniapp_appsecret" class="layui-input" lay-verify="required" placeholder="AppSecret" value="{:sysconfig('wechat','miniapp_appsecret')}">
+            <tip>填写AppSecret</tip>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">公众号公钥</label>
+        <div class="layui-input-block">
+            <input type="text" name="web_appid" class="layui-input" lay-verify="required" placeholder="AppID" value="{:sysconfig('wechat','web_appid')}">
+            <tip>填写AppID</tip>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">公众号私钥</label>
+        <div class="layui-input-block">
+            <input type="text" name="web_appsecret" class="layui-input" lay-verify="required" placeholder="AppSecret" value="{:sysconfig('wechat','web_appsecret')}">
+            <tip>填写AppSecret</tip>
+        </div>
+    </div>
+
+    <div class="hr-line"></div>
+    <div class="layui-form-item text-center">
+        <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="system.config/save" data-refresh="false">确认</button>
+        <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">重置</button>
+    </div>
+
+</form>
