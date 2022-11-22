@@ -80,6 +80,8 @@ class Card extends ApiController
             $this->returnData['data'] = $this->model::withCount(['userCardHistory', 'userCardSupport'])->find($id);
         } else {
             $card = $this->model::withCount(['userCardHistory', 'userCardSupport'])
+                ->with(['userCardHistory'])
+                ->where(['status' => 1])
                 ->order('id desc')
                 ->limit(1)->select();
             $this->returnData['data'] = $card[0];
