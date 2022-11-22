@@ -84,7 +84,7 @@ class Card extends ApiController
                 ->where(['status' => 1])
                 ->order('id desc')
                 ->limit(1)->select();
-            $this->returnData['data'] = $card[0];
+            $this->returnData['data'] = $card[0] ?? [];
         }
         $this->returnApiData();
     }
