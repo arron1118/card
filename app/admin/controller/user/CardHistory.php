@@ -20,10 +20,9 @@ class CardHistory extends AdminController
         parent::__construct($app);
 
         $this->model = new \app\admin\model\UserCardHistory();
-        
+
     }
 
-    
     /**
      * @NodeAnotation(title="列表")
      */
@@ -35,11 +34,10 @@ class CardHistory extends AdminController
             }
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model
-                ->withJoin('user', 'LEFT')
                 ->where($where)
                 ->count();
             $list = $this->model
-                ->withJoin('user', 'LEFT')
+                ->with(['card', 'user'])
                 ->where($where)
                 ->page($page, $limit)
                 ->order($this->sort)

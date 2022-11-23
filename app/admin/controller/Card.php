@@ -20,12 +20,12 @@ class Card extends AdminController
         parent::__construct($app);
 
         $this->model = new \app\admin\model\Card();
-        
+
         $this->assign('getStatusList', $this->model->getStatusList());
 
     }
 
-    
+
     /**
      * @NodeAnotation(title="列表")
      */
@@ -37,11 +37,10 @@ class Card extends AdminController
             }
             list($page, $limit, $where) = $this->buildTableParames();
             $count = $this->model
-                ->withJoin('systemAdmin', 'LEFT')
                 ->where($where)
                 ->count();
             $list = $this->model
-                ->withJoin('systemAdmin', 'LEFT')
+                ->withCount(['userCardSupport', 'userCardHistory'])
                 ->where($where)
                 ->page($page, $limit)
                 ->order($this->sort)

@@ -71,12 +71,14 @@
             <label class="layui-form-label">经度</label>
             <div class="layui-input-block">
                 <input type="text" name="longitude" class="layui-input" lay-verify="required" placeholder="请输入经度" value="{$row.longitude|default=''}">
+                <tip class="layui-word-aux">地图经度，前往<a href="https://lbs.amap.com/tools/picker">坐标拾取器</a>获取，地址：https://lbs.amap.com/tools/picker</tip>
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">纬度</label>
             <div class="layui-input-block">
                 <input type="text" name="latitude" class="layui-input" lay-verify="required" placeholder="请输入纬度" value="{$row.latitude|default=''}">
+                <tip class="layui-word-aux">地图纬度，前往<a href="https://lbs.amap.com/tools/picker">坐标拾取器</a>获取，地址：https://lbs.amap.com/tools/picker</tip>
             </div>
         </div>
         <div class="layui-form-item">
