@@ -6,6 +6,10 @@ namespace app\api\controller;
 use app\common\controller\ApiController;
 use think\Request;
 use app\admin\model\Card as CardModel;
+use app\admin\model\UserCardSupport;
+use app\admin\model\UserCardHistory;
+use app\admin\model\UserCardCall;
+use app\admin\model\UserCardShare;
 
 class Card extends ApiController
 {
@@ -118,11 +122,11 @@ class Card extends ApiController
             $model = null;
 
             if ($key === 'share') {
-                $model = new \app\admin\model\UserCardShare();
+                $model = new UserCardShare();
             } elseif ($key === 'call') {
-                $model = new \app\admin\model\UserCardCall();
+                $model = new UserCardCall();
             } elseif ($key === 'support') {
-                $model = new \app\admin\model\UserCardSupport();
+                $model = new UserCardSupport();
             }
 
             if ($model !== null) {
@@ -131,6 +135,7 @@ class Card extends ApiController
                     'card_id' => $id,
                     'user_id' => $this->userInfo->id,
                 ]);
+                $this->returnData['msg'] = 'success';
             }
         }
 
@@ -144,11 +149,22 @@ class Card extends ApiController
      */
     public function setViewHistory($id)
     {
-        (new \app\admin\model\UserCardHistory())->save([
+        (new UserCardHistory())->save([
             'card_id' => $id,
             'user_id' => $this->userInfo->id,
             'view_time' => $this->params['view_time'],
         ]);
+    }
+
+    public function hasSupport($id)
+    {
+        $this->returnData['code'] = 1;
+        $list = (new UserCardSupport)->where([
+            'card_id' => $id,
+            'user_id' => $this->userInfo->id,
+        ])->select();
+        $this->returnData['data'] = (bool)count($list);
+        $this->returnApiData('success');
     }
 
     /**
